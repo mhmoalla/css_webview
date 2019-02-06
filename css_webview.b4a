@@ -5,9 +5,11 @@ Library1=core
 Library2=webviewextras2
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=Starter
+Module2=method2
+Module3=method1
 NumberOfFiles=0
 NumberOfLibraries=2
-NumberOfModules=1
+NumberOfModules=3
 Version=8
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -33,28 +35,31 @@ End Sub
 Sub Globals
 	'These global variables will be redeclared each time the activity is created.
 	'These variables can only be accessed from this module.
-	Dim wv As WebView
 
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	'Do not forget to load the layout file created with the visual designer. For example:
 	'Activity.LoadLayout("Layout1")
+	Dim btnMethod1 As Button
+	btnMethod1.Initialize("btnMethod1")
+	btnMethod1.Text = "روش اول"
+	Activity.AddView(btnMethod1,20dip,20dip,100%x-40dip,50dip)
 	
-	wv.Initialize("wv")
-	Activity.AddView(wv,0,0,100%x,100%y)
-'	wv.LoadUrl("var x = document.getElementById('hplogo');x.style.display = 'none';")
-	wv.LoadUrl("http://www.google.com")
-	
-	
+	Dim btnMethod2 As Button
+	btnMethod2.Initialize("btnMethod2")
+	btnMethod2.Text = "روش دوم"
+	Activity.AddView(btnMethod2,20dip,80dip,100%x-40dip,50dip)
 End Sub
 
-Sub wv_PageFinished (Url As String)
-	Dim wve As WebViewExtras
-	wve.Initialize(wv)
-	wve.ExecuteJavascript( "document.getElementById('hplogo').style.display = 'none';")
-
+Sub btnMethod1_click
+	StartActivity(method1)
 End Sub
+
+Sub btnMethod2_click
+	StartActivity(method2)
+End Sub
+
 
 Sub Activity_Resume
 
